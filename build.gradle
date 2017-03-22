@@ -3,9 +3,14 @@ apply plugin: 'idea'
 apply plugin: 'maven-publish'
 apply plugin: 'jacoco'
 apply plugin: 'distribution'
+apply plugin: 'eclipse'
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
+
+allprojects {
+    tasks.withType(Javadoc).all { enabled = false }
+}
 
 tasks.withType(JavaCompile) { options.encoding = "UTF-8" }
 
@@ -201,8 +206,6 @@ jacocoTestReport {
     }
 }
 
-
-
 distributions {
     main {
         contents {
@@ -222,7 +225,7 @@ distributions {
             }
             from(file(".")) {
                 include '*.txt'
-                into 'rhino' + project.version 
+                into 'rhino' + project.version
             }
             into "/"
         }
