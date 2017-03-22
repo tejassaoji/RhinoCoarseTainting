@@ -35,6 +35,14 @@ public class RegExpImpl implements RegExpProxy {
         GlobData data = new GlobData();
         data.mode = actionType;
         data.str = ScriptRuntime.toString(thisObj);
+        
+        String taintVal = "";
+        
+        if(data.str.contains("_")){
+        	taintVal = "_" + data.str.split("_")[1];
+        	data.str = data.str.split("_")[0];
+        }
+        
 
         switch (actionType) {
           case RA_MATCH:
@@ -111,7 +119,7 @@ public class RegExpImpl implements RegExpProxy {
                 }
                 SubString rc = this.rightContext;
                 data.charBuf.append(rc.str, rc.index, rc.index + rc.length);
-                return data.charBuf.toString();
+                return data.charBuf.toString()+taintVal;
             }
 
           default:
