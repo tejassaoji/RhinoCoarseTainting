@@ -527,6 +527,7 @@ public class Parser
     public AstRoot parse(Reader sourceReader, String sourceURI, int lineno)
         throws IOException
     {
+        //System.err.println("In parse 1 function in Parser.java!!!!!  SourceString is --> " + sourceString);
         if (parseFinished) throw new IllegalStateException("parser reused");
         if (compilerEnv.isIdeMode()) {
             return parse(readFully(sourceReader), sourceURI, lineno);
@@ -542,6 +543,7 @@ public class Parser
 
     private AstRoot parse() throws IOException
     {
+        System.err.println("In parse() function in PARSER.java!!!!! ");
         int pos = 0;
         AstRoot root = new AstRoot(pos);
         currentScope = currentScriptOrFn = root;
@@ -918,7 +920,6 @@ public class Parser
                 }
                 fnNode.putProp(Node.DESTRUCTURING_PARAMS, destructuringNode);
             }
-                
             fnNode.setBody(parseFunctionBody(FunctionNode.ARROW_FUNCTION, fnNode));
             fnNode.setEncodedSourceBounds(functionSourceStart, ts.tokenEnd);
             fnNode.setLength(ts.tokenEnd - functionSourceStart);
@@ -2540,7 +2541,7 @@ public class Parser
                         // #TODO
                     }
                 }
-                else {                           
+                else {
                     result.add(en);
                 }
             } while (matchToken(Token.COMMA));
@@ -3260,11 +3261,11 @@ public class Parser
     {
         return generatorExpression(result, pos, false);
     }
-    
+
     private AstNode generatorExpression(AstNode result, int pos, boolean inFunctionParams)
         throws IOException
     {
-        
+
         List<GeneratorExpressionLoop> loops =
                 new ArrayList<GeneratorExpressionLoop>();
         while (peekToken() == Token.FOR) {
@@ -3291,7 +3292,7 @@ public class Parser
         }
         return pn;
     }
-        
+
     private GeneratorExpressionLoop generatorExpressionLoop()
         throws IOException
     {
