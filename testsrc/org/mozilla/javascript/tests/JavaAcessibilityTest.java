@@ -40,7 +40,7 @@ public class JavaAcessibilityTest extends TestCase {
     TestUtils.setGlobalContextFactory(null);
   }
 
-  private ContextFactory contextFactory = new ShellContextFactory() {
+  protected ContextFactory contextFactory = new ShellContextFactory() {
     @Override
     protected boolean hasFeature(Context cx, int featureIndex) {
       if (featureIndex == Context.FEATURE_ENHANCED_JAVA_ACCESS)
@@ -119,8 +119,7 @@ public class JavaAcessibilityTest extends TestCase {
         "(new java.util.GregorianCalendar()).set(3,4);'success';");
       assertEquals("success", result);
   }
-
-
+  
   private Object runScript(final String scriptSourceText) {
     return contextFactory.call(new ContextAction() {
       public Object run(Context context) {
