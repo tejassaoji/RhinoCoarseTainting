@@ -132,6 +132,17 @@ public class NativeJavaMethod extends BaseFunction
                        Object[] args)
     {
         // Find a method that matches the types given.
+    	
+    	//Added by Tejas S.
+    	for (int i = 0; i < args.length; i++) {
+    		if (args[i] instanceof String || args[i] instanceof ConsString || args[i] instanceof NativeString){
+    			if(args[i].toString().contains("_")){
+    				args[i] = args[i].toString().split("_")[0];
+    			}
+    		}
+		}
+    	//Added by Tejas S.
+    	
         if (methods.length == 0) {
             throw new RuntimeException("No methods defined for call");
         }

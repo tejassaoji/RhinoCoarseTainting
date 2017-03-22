@@ -378,6 +378,9 @@ public class FunctionObject extends BaseFunction
             // flatten cons-strings before passing them as arguments
             if (args[i] instanceof ConsString) {
                 args[i] = args[i].toString();
+                if(args[i].toString().contains("_")){
+    				args[i] = args[i].toString().split("_")[0];
+    			}
             }
         }
 

@@ -409,6 +409,13 @@ final class NativeString extends IdScriptableObject
                 }
                 case Id_trim: {
                     String str = ScriptRuntime.toString(requireObjectCoercible(cx, thisObj, f));
+                    String taintVal = "";
+                    
+                    if(str.contains("_")){
+                    	taintVal = "_" + str.split("_")[1];
+                    	str = str.split("_")[0];
+                    }
+                    
                     char[] chars = str.toCharArray();
 
                     int start = 0;
@@ -420,7 +427,7 @@ final class NativeString extends IdScriptableObject
                         end--;
                     }
 
-                    return str.substring(start, end);
+                    return str.substring(start, end)+taintVal;
                 }
                 case Id_trimLeft: {
                     String str = ScriptRuntime.toString(thisObj);
@@ -437,6 +444,13 @@ final class NativeString extends IdScriptableObject
                 case Id_trimRight:
                 {
                     String str = ScriptRuntime.toString(thisObj);
+                    
+                    String taintVal = "";                  
+                    if(str.contains("_")){
+                    	taintVal = "_" + str.split("_")[1];
+                    	str = str.split("_")[0];
+                    }
+                    
                     char[] chars = str.toCharArray();
 
                     int start = 0;
@@ -446,7 +460,7 @@ final class NativeString extends IdScriptableObject
                         end--;
                     }
 
-                    return str.substring(start, end);
+                    return str.substring(start, end)+taintVal;
                 }
                 case Id_normalize:
                 {
@@ -498,6 +512,13 @@ final class NativeString extends IdScriptableObject
                                  String attribute, Object[] args)
     {
         String str = ScriptRuntime.toString(thisObj);
+        
+        String taintVal = "";
+        if(str.contains("_")){
+        	taintVal = "_" + str.split("_")[1];
+        	str = str.split("_")[0];
+        }
+        
         StringBuilder result = new StringBuilder();
         result.append('<');
         result.append(tag);
@@ -513,7 +534,7 @@ final class NativeString extends IdScriptableObject
         result.append("</");
         result.append(tag);
         result.append('>');
-        return result.toString();
+        return result.toString()+taintVal;
     }
 
     public CharSequence toCharSequence() {
@@ -611,8 +632,16 @@ final class NativeString extends IdScriptableObject
      */
     private static CharSequence js_substring(Context cx, CharSequence target,
                                        Object[] args)
-    {
-        int length = target.length();
+    {	
+    	String targetStr = target.toString();
+        String targetTaintVal = "";
+        
+        if(targetStr.contains("_")){
+        	targetTaintVal = "_" + targetStr.split("_")[1];
+        	target = targetStr.split("_")[0];
+        }
+    	
+    	int length = target.length();
         double start = ScriptRuntime.toInteger(args, 0);
         double end;
 
@@ -642,7 +671,8 @@ final class NativeString extends IdScriptableObject
                 }
             }
         }
-        return target.subSequence((int)start, (int)end);
+        
+        return target.subSequence((int)start, (int)end) + targetTaintVal;
     }
 
     int getLength() {
@@ -655,7 +685,15 @@ final class NativeString extends IdScriptableObject
     private static CharSequence js_substr(CharSequence target, Object[] args) {
         if (args.length < 1)
             return target;
-
+        
+        String targetStr = target.toString();
+        String targetTaintVal = "";
+        
+        if(targetStr.contains("_")){
+        	targetTaintVal = "_" + targetStr.split("_")[1];
+        	target = targetStr.split("_")[0];
+        }
+        
         double begin = ScriptRuntime.toInteger(args[0]);
         double end;
         int length = target.length();
@@ -679,7 +717,7 @@ final class NativeString extends IdScriptableObject
                 end = length;
         }
 
-        return target.subSequence((int)begin, (int)end);
+        return target.subSequence((int)begin, (int)end)+targetTaintVal;
     }
 
     /*
@@ -687,10 +725,33 @@ final class NativeString extends IdScriptableObject
      */
     private static String js_concat(String target, Object[] args) {
         int N = args.length;
+        Boolean targetTaintValue = false;
+        
+        if(target.contains("_")){
+        	targetTaintValue = Boolean.parseBoolean(target.split("_")[1]);
+        	target = target.split("_")[0];
+        }
+        
         if (N == 0) { return target; }
+        
         else if (N == 1) {
             String arg = ScriptRuntime.toString(args[0]);
-            return target.concat(arg);
+            Boolean argTaintValue = false;
+            
+            if(arg.contains("_")){
+            	argTaintValue = Boolean.parseBoolean(arg.split("_")[1]);
+            	arg = arg.split("_")[0];
+            }
+            
+            String taintVal = "";
+            if(targetTaintValue || argTaintValue){
+            	taintVal = "_true";
+            }
+            else{
+            	taintVal = "_false";
+            }
+            
+            return target.concat(arg)+taintVal;
         }
 
         // Find total capacity for the final string to avoid unnecessary
@@ -714,6 +775,15 @@ final class NativeString extends IdScriptableObject
     private static CharSequence js_slice(CharSequence target, Object[] args) {
         double begin = args.length < 1 ? 0 : ScriptRuntime.toInteger(args[0]);
         double end;
+        
+        String targetStr = target.toString();
+        String targetTaintVal = "";
+        
+        if(targetStr.contains("_")){
+        	targetTaintVal = "_" + targetStr.split("_")[1];
+        	target = targetStr.split("_")[0];
+        }
+        
         int length = target.length();
         if (begin < 0) {
             begin += length;
@@ -737,7 +807,7 @@ final class NativeString extends IdScriptableObject
             if (end < begin)
                 end = begin;
         }
-        return target.subSequence((int) begin, (int) end);
+        return target.subSequence((int) begin, (int) end)+targetTaintVal;
     }
 
     private static String js_repeat(Context cx, Scriptable thisObj, IdFunctionObject f, Object[] args)
@@ -933,5 +1003,6 @@ final class NativeString extends IdScriptableObject
         ConstructorId_toLocaleLowerCase = -Id_toLocaleLowerCase;
 
     private CharSequence string;
+    private boolean taint = false;
 }
 

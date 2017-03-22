@@ -1987,6 +1987,7 @@ public class ScriptRuntime {
                 if (withObj instanceof XMLObject) {
                     XMLObject xmlObject = (XMLObject)withObj;
                     if (xmlObject.has(cx, id)) {
+                    	System.err.println("In bind() in ScriptRunTime.java.. 1..");
                         return xmlObject;
                     }
                     if (firstXMLObject == null) {
@@ -1994,6 +1995,7 @@ public class ScriptRuntime {
                     }
                 } else {
                     if (ScriptableObject.hasProperty(withObj, id)) {
+                    	System.err.println("In bind() in ScriptRunTime.java.. 2..");
                         return withObj;
                     }
                 }
@@ -2005,6 +2007,7 @@ public class ScriptRuntime {
             }
             for (;;) {
                 if (ScriptableObject.hasProperty(scope, id)) {
+                	System.err.println("In bind() in ScriptRunTime.java.. 3..");
                     return scope;
                 }
                 scope = parent;
@@ -2019,10 +2022,12 @@ public class ScriptRuntime {
             scope = checkDynamicScope(cx.topCallScope, scope);
         }
         if (ScriptableObject.hasProperty(scope, id)) {
+        	System.err.println("In bind() in ScriptRunTime.java.. 4..");
             return scope;
         }
         // Nothing was found, but since XML objects always bind
         // return one if found
+        System.err.println("In bind() in ScriptRunTime.java.. 5..");
         return firstXMLObject;
     }
 
@@ -2032,7 +2037,28 @@ public class ScriptRuntime {
         if (bound != null) {
             // TODO: we used to special-case XMLObject here, but putProperty
             // seems to work for E4X and it's better to optimize  the common case
-            ScriptableObject.putProperty(bound, id, value);
+        	if(value instanceof String || value instanceof NativeString || value instanceof ConsString){
+        		String valueStr = value.toString();
+            	if(valueStr.contains("_")){
+            		String arr[] = valueStr.split("_");
+            		ScriptableObject.putProperty(bound, id, arr[0]);
+            		
+            		if("true".equalsIgnoreCase(arr[1]))
+            			ScriptableObject.putProperty(bound, id, "taint");
+            		else
+            			ScriptableObject.putProperty(bound, id, "untaint");
+            	}
+            	else{
+            		ScriptableObject.putProperty(bound, id, valueStr);
+                    ScriptableObject.putProperty(bound, id, "untaint");
+            	}
+        	}
+        	else{
+        		ScriptableObject.putProperty(bound, id, value);
+                ScriptableObject.putProperty(bound, id, "untaint");
+        	}
+        	
+            
         } else {
             // "newname = 7;", where 'newname' has not yet
             // been defined, creates a new property in the
