@@ -144,6 +144,7 @@ public class Main
      */
     public static int exec(String origArgs[])
     {
+        System.err.println("In exec() Main.java ");
         errorReporter = new ToolErrorReporter(false, global.getErr());
         shellContextFactory.setErrorReporter(errorReporter);
         String[] args = processOptions(origArgs);
@@ -182,6 +183,7 @@ public class Main
                         "msg.couldnt.read.source", file, ioex.getMessage()));
                 exitCode = EXITCODE_FILE_NOT_FOUND;
             } catch (RhinoException rex) {
+              System.err.println("hey errorrrrrrr!!!!! M1");
                 ToolErrorReporter.reportException(
                     cx.getErrorReporter(), rex);
                 exitCode = EXITCODE_RUNTIME_ERROR;
@@ -203,6 +205,7 @@ public class Main
                 script.exec(cx, getShellScope());
             }
         } catch (RhinoException rex) {
+            System.err.println("hey errorrrrrrr!!!!! M2");
             ToolErrorReporter.reportException(
                     cx.getErrorReporter(), rex);
             exitCode = EXITCODE_RUNTIME_ERROR;
@@ -493,6 +496,7 @@ public class Main
                 }
                 try {
                     Script script = cx.compileString(source, "<stdin>", lineno, null);
+                    //System.err.println(" In processSource() function in Main.java. Script is -> " + script);
                     if (script != null) {
                         Object result = script.exec(cx, scope);
                         // Avoid printing out undefined or function definitions.
@@ -503,6 +507,7 @@ public class Main
                             try {
                                 console.println(Context.toString(result));
                             } catch (RhinoException rex) {
+                              System.err.println("hey errorrrrrrr!!!!! M3");
                                 ToolErrorReporter.reportException(
                                         cx.getErrorReporter(), rex);
                             }
@@ -511,6 +516,7 @@ public class Main
                         h.put((int)h.getLength(), h, source);
                     }
                 } catch (RhinoException rex) {
+                  System.err.println("hey errorrrrrrr!!!!! M4");
                     ToolErrorReporter.reportException(
                         cx.getErrorReporter(), rex);
                     exitCode = EXITCODE_RUNTIME_ERROR;
@@ -540,6 +546,7 @@ public class Main
                     "msg.couldnt.read.source", filename, ioex.getMessage()));
             exitCode = EXITCODE_FILE_NOT_FOUND;
         } catch (RhinoException rex) {
+          System.err.println("hey errorrrrrrr!!!!! M5");
             ToolErrorReporter.reportException(
                     cx.getErrorReporter(), rex);
             exitCode = EXITCODE_RUNTIME_ERROR;

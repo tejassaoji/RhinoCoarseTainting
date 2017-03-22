@@ -130,6 +130,7 @@ public class ToolErrorReporter implements ErrorReporter {
             ((ToolErrorReporter)er).reportException(ex);
         } else {
             String msg = getExceptionMessage(ex);
+            System.err.println("In reportException(er,ex) function in ToolsErrorReporter.java!!!!!  msg is --> " + msg);
             er.error(msg, ex.sourceName(), ex.lineNumber(),
                      ex.lineSource(), ex.columnNumber());
         }
@@ -145,6 +146,7 @@ public class ToolErrorReporter implements ErrorReporter {
                 SecurityUtilities.getSystemProperty("line.separator");
             String msg = getExceptionMessage(ex) + lineSeparator +
                 ex.getScriptStackTrace();
+            System.err.println("In reportException(ex) function in ToolsErrorReporter.java!!!!!  msg is --> " + msg);
             reportErrorMessage(msg, ex.sourceName(), ex.lineNumber(),
                                ex.lineSource(), ex.columnNumber(), false);
         }
