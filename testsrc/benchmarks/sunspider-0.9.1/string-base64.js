@@ -48,23 +48,34 @@ function toBase64(data) {
     var i;
     // Convert every three bytes to 4 ascii characters.
     for (i = 0; i < (length - 2); i += 3) {
+        print("1");
         result += toBase64Table[data.charCodeAt(i) >> 2];
+        print("2");
         result += toBase64Table[((data.charCodeAt(i) & 0x03) << 4) + (data.charCodeAt(i+1) >> 4)];
+        print("3");
         result += toBase64Table[((data.charCodeAt(i+1) & 0x0f) << 2) + (data.charCodeAt(i+2) >> 6)];
+        print("4");
         result += toBase64Table[data.charCodeAt(i+2) & 0x3f];
+        print("5");
     }
 
     // Convert the remaining 1 or 2 bytes, pad out to 4 characters.
     if (length%3) {
         i = length - (length%3);
         result += toBase64Table[data.charCodeAt(i) >> 2];
+        print("6");
         if ((length%3) == 2) {
             result += toBase64Table[((data.charCodeAt(i) & 0x03) << 4) + (data.charCodeAt(i+1) >> 4)];
+            print("7");
             result += toBase64Table[(data.charCodeAt(i+1) & 0x0f) << 2];
+            print("8");
             result += base64Pad;
+            print("9");
         } else {
             result += toBase64Table[(data.charCodeAt(i) & 0x03) << 4];
+            print("10");
             result += base64Pad + base64Pad;
+            print("11");
         }
     }
 
@@ -94,7 +105,7 @@ function base64ToString(data) {
         var padding = (data.charCodeAt(i) == base64Pad.charCodeAt(0));
         // Skip illegal characters and whitespace
         if (c == -1) continue;
-        
+
         // Collect data into leftdata, update bitcount
         leftdata = (leftdata << 6) | c;
         leftbits += 6;
@@ -103,9 +114,17 @@ function base64ToString(data) {
         if (leftbits >= 8) {
             leftbits -= 8;
             // Append if not padding.
-            if (!padding)
+            print("12");
+            if (!padding){
+                print ("result :: ")
+                print (result);
+                print ("fromCharCode :: ");
+                print (String.fromCharCode((leftdata >> leftbits) & 0xff));
                 result += String.fromCharCode((leftdata >> leftbits) & 0xff);
+            }
+            print("13");
             leftdata &= (1 << leftbits) - 1;
+            print("14");
         }
     }
 
@@ -129,7 +148,9 @@ for ( var i = 8192; i <= 16384; i *= 2 ) {
     base64ToString(base64);
 
     // Double the string
+    print("15");
     str += str;
+    print("16");
 }
 
 toBinaryTable = null;

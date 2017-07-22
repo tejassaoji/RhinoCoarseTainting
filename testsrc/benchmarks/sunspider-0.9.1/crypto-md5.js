@@ -283,4 +283,136 @@ for (var i = 0; i <4; i++) {
     plainText += plainText;
 }
 
-var md5Output = hex_md5(plainText);
+// // Test 0
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+
+// // Test 1
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+
+// // Test 2
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+
+// // Test 3
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+
+// // Test 4
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+
+// // Test 5
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+
+
+// // Test 6
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+
+// // Test 7
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+
+
+// // Test 8
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(plainText);
+// var md5Output = hex_md5(plainText);
+
+// // Test 9
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(taint(plainText));
+// var md5Output = hex_md5(plainText);
+
+// Test 10
+var md5Output = hex_md5(taint(plainText));
+var md5Output = hex_md5(taint(plainText));
+var md5Output = hex_md5(taint(plainText));
+var md5Output = hex_md5(taint(plainText));
+var md5Output = hex_md5(taint(plainText));
+var md5Output = hex_md5(taint(plainText));
+var md5Output = hex_md5(taint(plainText));
+var md5Output = hex_md5(taint(plainText));
+var md5Output = hex_md5(taint(plainText));
+var md5Output = hex_md5(taint(plainText));

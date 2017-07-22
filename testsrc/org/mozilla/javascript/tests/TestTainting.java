@@ -41,8 +41,8 @@ public class TestTainting extends TestCase {
   
   public void testTainting02() {
       Object result = runScript(
-    		  "var x = \"hey\"; taint(x); var y = \"hello\"; taint(y); isTainted(y)");
-      assertEquals(true, result);
+    		  "var x = \"hey\"; var y = taint(x); var z = untaint(x); isTainted(z)");
+      assertEquals(false, result);
   }
   
   public void testTainting03() {
@@ -53,7 +53,7 @@ public class TestTainting extends TestCase {
   
   public void testTainting04() {
       Object result = runScript(
-    		  "var x = \"hey\"; taint(x); var y = \"hello\"; taint(y); untaint(x); isTainted(y); ");
+    		  "var x = \"hey\"; var y = taint(x); var a = \"hello\"; var b = taint(a); var c = untaint(b); isTainted(y); ");
       assertEquals(true, result);
   }
   
@@ -66,21 +66,21 @@ public class TestTainting extends TestCase {
   //VAR Y = X, where X is tainted
   public void testTainting06() {
       Object result = runScript(
-    		  "var x = \"hey\"; taint(x); x = x.replace(\"y\",\"llo\"); var y = x; print(y); isTainted(y);");
+    		  "var x = \" hey \"; var y = taint(x); var z = y.trimLeft(); var a = z; print(y); isTainted(a);");
       assertEquals(true, result);
   }
   
   //CONCAT function, where either of the two strings or both the strings are tainted
   public void testTainting07() {
       Object result = runScript(
-    		  "var x = \"Hello\"; taint(x); var y = \"World\"; var c = x.concat(y); isTainted(c);");
+    		  "var x = \"Hello\"; var y = taint(x); var z = \"World\"; var a = y.concat(z); isTainted(a);");
       assertEquals(true, result);
   }
   
   //String concatenation using '+' operator, where one of the strings or all the strings are tainted
   public void testTainting08() {
       Object result = runScript(
-    		  "var x = \"Hello\"; taint(x); var y = \"World\"; var z = x + y + x; isTainted(z);");
+    		  "var x = \"Hello\"; var y = taint(x); var z = \"World\"; var a = x + y + z; isTainted(a);");
       assertEquals(true, result);
   }
   
@@ -99,7 +99,7 @@ public class TestTainting extends TestCase {
   
   public void testTainting11() {
       Object result = runScript(
-    		  "var x = \"Hello Tejas!\"; taint(x); var y = x.substring(0,5); isTainted(y);");
+    		  "var x = \"Hello Tejas!\"; var y = taint(x); var z = y.substring(0,5); isTainted(z);");
       assertEquals(true, result);
   }
   
@@ -112,7 +112,7 @@ public class TestTainting extends TestCase {
   
   public void testTainting13() {
       Object result = runScript(
-    		  "var x = \"     Tejas     \"; taint(x); var y = x.trim(); isTainted(y);");
+    		  "var x = \"     Tejas     \"; var y = taint(x); var z = y.trim(); isTainted(z);");
       assertEquals(true, result);
   }
   
@@ -125,14 +125,14 @@ public class TestTainting extends TestCase {
     
   public void testTainting15() {
 	  Object result = runScript(
-    		  "var x = \"Hello World\"; taint(x); var y = x.replace(\"Hello\",\"Hey\"); isTainted(y);");
+    		  "var x = \"Hello World\"; var y = taint(x); var z = y.replace(\"Hello\",\"Hey\"); isTainted(z);");
       assertEquals(true, result);
   }
   
 //string BOLD, ITALICS, FONTSIZE, FONTCOLOR, LINK, SUP, SUB, SMALL, BIG, STRIKE, etc. functions
   public void testTainting16() {
 	  Object result = runScript(
-    		  "var x = \"Hello World\"; taint(x); var y = x.bold().italics().fontsize(6).fontcolor(\"red\").link(); isTainted(y);");
+    		  "var x = \"Hello World\"; var y = taint(x); var z = y.bold().italics().fontsize(6).fontcolor(\"red\").link(); isTainted(z);");
       assertEquals(true, result);
   }
 
@@ -147,8 +147,9 @@ public class TestTainting extends TestCase {
 //global and local scope taint
   
   public void testTaintingGTC01() {
-	  Object result = runScript(
-    		  "var x = \"  Hello  \"; taint(x); var t = x.bold().italics().fontsize(6).fontcolor(\"yellow\").link(); var y = t; var z = y.trim(); var a = z.replace(\"Hello\",\"Hey\"); var b = a.concat(\" Tejas \"); var c = b.substr(0,3); isTainted(c);");
+      Object result = runScript(
+    		  "var x = \"  Hello  \"; var y = taint(x); var z = y.bold().italics().fontsize(6).fontcolor(\"yellow\").link(); var a = z; var b = a.trim(); "
+    		  + "var c = b.concat(\" Tejas \"); var d = c.substr(0,3); isTainted(d);");
       assertEquals(true, result);
   }
   
