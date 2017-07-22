@@ -57,7 +57,7 @@ public class Codegen implements Evaluator
                           String encodedSource,
                           boolean returnFunction)
     {
-        System.err.println("In compile() function in Codegen.java!!!!!  ");
+        //System.err.println("In compile() function in Codegen.java!!!!!  ");
 
         int serial;
         synchronized (globalLock) {
@@ -147,7 +147,7 @@ public class Codegen implements Evaluator
                                      boolean returnFunction)
     {
         this.compilerEnv = compilerEnv;
-        System.err.println("In compileToClassFile() in Codegen.java");
+        //System.err.println("In compileToClassFile() in Codegen.java");
         transform(scriptOrFn);
 
         if (Token.printTrees) {
@@ -264,7 +264,7 @@ public class Codegen implements Evaluator
 
     private byte[] generateCode(String encodedSource)
     {
-        System.err.println("In generateCode() function in Codegen.java!!!!!");
+        //System.err.println("In generateCode() function in Codegen.java!!!!!");
         boolean hasScript = (scriptOrFnNodes[0].getType() == Token.SCRIPT);
         boolean hasFunctions = (scriptOrFnNodes.length > 1 || !hasScript);
         boolean isStrictMode = scriptOrFnNodes[0].isInStrictMode();

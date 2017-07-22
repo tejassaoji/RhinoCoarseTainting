@@ -144,7 +144,7 @@ public class Main
      */
     public static int exec(String origArgs[])
     {
-        System.err.println("In exec() Main.java ");
+        //System.err.println("In exec() in Main.java ");
         errorReporter = new ToolErrorReporter(false, global.getErr());
         shellContextFactory.setErrorReporter(errorReporter);
         String[] args = processOptions(origArgs);

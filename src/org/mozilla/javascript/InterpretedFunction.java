@@ -103,17 +103,17 @@ final class InterpretedFunction extends NativeFunction implements Script
     public Object call(Context cx, Scriptable scope, Scriptable thisObj,
                        Object[] args)
     {
-    	System.err.println("in call() in InterpretedFunction.java!!");
+    	//System.err.println("in call() in InterpretedFunction.java!!");
         if (!ScriptRuntime.hasTopCall(cx)) {
             return ScriptRuntime.doTopCall(this, cx, scope, thisObj, args, idata.isStrict);
         }
-        System.err.println("in call() outside if in InterpretedFunction.java!!");
+        //System.err.println("in call() outside if in InterpretedFunction.java!!");
         return Interpreter.interpret(this, cx, scope, thisObj, args);
     }
 
     public Object exec(Context cx, Scriptable scope)
     {	
-    	System.err.println("in exec() in InterpretedFunction.java!!");
+    	//System.err.println("in exec() in InterpretedFunction.java!!");
         if (!isScript()) {
             // Can only be applied to scripts
             throw new IllegalStateException();
@@ -124,7 +124,7 @@ final class InterpretedFunction extends NativeFunction implements Script
             return ScriptRuntime.doTopCall(
                 this, cx, scope, scope, ScriptRuntime.emptyArgs, idata.isStrict);
         }
-        System.err.println("in exec() outside if in InterpretedFunction.java!!");
+        //System.err.println("in exec() outside if in InterpretedFunction.java!!");
         return Interpreter.interpret(
             this, cx, scope, scope, ScriptRuntime.emptyArgs);
     }

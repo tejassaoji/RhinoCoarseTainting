@@ -1450,7 +1450,7 @@ public class Context
             // For compatibility IllegalArgumentException can not be thrown here
             lineno = 0;
         }
-        System.err.println("In compileReader() function in Context.java!!!!! 1 ");
+        //System.err.println("In compileReader() function in Context.java!!!!! 1 ");
         return (Script) compileImpl(null, in, null, sourceName, lineno,
                                     securityDomain, false, null, null);
     }
@@ -1475,7 +1475,7 @@ public class Context
                                       String sourceName, int lineno,
                                       Object securityDomain)
     {
-        System.err.println("In compileString() Context.java");
+        //System.err.println("In compileString() in Context.java");
 
         if (lineno < 0) {
             // For compatibility IllegalArgumentException can not be thrown here
@@ -1492,7 +1492,7 @@ public class Context
                                Object securityDomain)
     {
         try {
-            System.err.println("In compileReader() function in Context.java!!!!! 2 ");
+            //System.err.println("In compileReader() function in Context.java!!!!! 2 ");
             return (Script) compileImpl(null, null, source, sourceName, lineno,
                                         securityDomain, false,
                                         compiler, compilationErrorReporter);
@@ -1534,7 +1534,7 @@ public class Context
                                    Object securityDomain)
     {
         try {
-            System.err.println("In compileReader() function in Context.java!!!!! 3 ");
+            //System.err.println("In compileReader() function in Context.java!!!!! 3 ");
             return (Function) compileImpl(scope, null, source, sourceName,
                                           lineno, securityDomain, true,
                                           compiler, compilationErrorReporter);
@@ -2474,7 +2474,7 @@ public class Context
                                ErrorReporter compilationErrorReporter)
         throws IOException
     {
-        System.err.println("In compileImpl function in Context.java!!!!!  SourceString is --> " + sourceString);
+        //System.err.println("In compileImpl function in Context.java!!!!!  SourceString is --> " + sourceString);
         if(sourceName == null) {
             sourceName = "unnamed script";
         }
@@ -2535,7 +2535,7 @@ public class Context
         ast = null;
         irf = null;
 
-        System.err.println("In compileImpl() function in Context.java!!!!!  compiler is --> " + compiler);
+        //System.err.println("In compileImpl() function in Context.java!!!!!  compiler is --> " + compiler);
         if (compiler == null) {
             compiler = createCompiler();
         }
@@ -2543,7 +2543,7 @@ public class Context
         Object bytecode = compiler.compile(compilerEnv,
                                            tree, tree.getEncodedSource(),
                                            returnFunction);
-        System.err.println("In compileImpl() function in Context.java!!!!!  bytecode is --> " + bytecode);
+        //System.err.println("In compileImpl() function in Context.java!!!!!  bytecode is --> " + bytecode);
         if (debugger != null) {
             if (sourceString == null) Kit.codeBug();
             if (bytecode instanceof DebuggableScript) {

@@ -203,14 +203,30 @@ public class Global extends ImporterTopLevel
     public static Object taint(Context cx, Scriptable thisObj,
                                Object[] args, Function funObj)
     {	
-    	for (int i=0; i < args.length; i++) {
+    	/*for (int i=0; i < args.length; i++) {
             // Convert the arbitrary JavaScript value into a string form.
             String s = Context.toString(args[i]);
             ScriptableObject.putProperty(thisObj, s, "taint");    
-            System.out.println(s + ".taint set to TRUE!");
+            //System.out.println(s + ".taint set to TRUE! in Global.java");
+        }*/
+    	String result = null;
+    	
+    	for (int i=0; i < args.length; i++) {
+            // Convert the arbitrary JavaScript value into a string form.
+    		String str = null;
+    		
+    		if(args[i] instanceof String){
+    			str = args[i].toString();
+    			//System.out.println("taint(), String is :: " + str);
+    			if(str.contains("_")){
+    				str = str.split("_")[0];
+    			}
+    			result = str + "_true";
+				//System.out.println("RESULT ::" + result);
+    		}
         }
     
-		return true;
+		return result;
     }
     /**
      * Tejas Saoji.
@@ -225,18 +241,37 @@ public class Global extends ImporterTopLevel
                                Object[] args, Function funObj)
     {	
     	
-    	//System.out.println("isTainted() called!!! Yayyy");
-		//return Context.getUndefinedValue();
-    	Object result = null;
+    	/*Object result = null;
     	
     	for (int i=0; i < args.length; i++) {
             // Convert the arbitrary JavaScript value into a string form.
             String s = Context.toString(args[i]);
             result = ScriptableObject.getProperty(thisObj, s+"_isTainted?");       
             //System.out.println(s + ".isTainted() returns " + result.toString().toUpperCase());
-            System.out.println("isTainted(" + s +") returns " + result.toString().toUpperCase());
+            //System.out.println("isTainted(" + s +") returns " + result.toString().toUpperCase() + " in Global.java ");
         }
     	
+		return result;
+		*/
+    	
+    	Boolean result = false;
+    	
+    	for (int i=0; i < args.length; i++) {
+            // Convert the arbitrary JavaScript value into a string form.
+    		String str = null;
+    		String taintVal = "";
+    		
+    		if(args[i] instanceof String){
+    			str = args[i].toString();
+    			//System.out.println("isTainted(), String is ::" + str);
+    			if(str.contains("_")){
+    				taintVal = str.split("_")[1];
+    				if(taintVal.contains("true"))
+    					return true;
+    			}
+    		}
+        }
+    
 		return result;
     }
     /**
@@ -250,14 +285,33 @@ public class Global extends ImporterTopLevel
     public static Object untaint(Context cx, Scriptable thisObj,
                                Object[] args, Function funObj)
     {	
-    	for (int i=0; i < args.length; i++) {
+    	/*for (int i=0; i < args.length; i++) {
             // Convert the arbitrary JavaScript value into a string form.
             String s = Context.toString(args[i]);
             ScriptableObject.putProperty(thisObj, s, "untaint");   
-            System.out.println(s + ".taint set to FALSE!");
+            //System.out.println(s + ".taint set to FALSE! in Global.java");
         }
     
 		return true;
+		*/
+    	
+    	String result = null;
+    	
+    	for (int i=0; i < args.length; i++) {
+            // Convert the arbitrary JavaScript value into a string form.
+    		String str = null;
+    		
+    		if(args[i] instanceof String){
+    			str = args[i].toString();
+    			if(str.contains("_")){
+    				str = str.split("_")[0];
+    			}
+    			result = str + "_false";
+				//System.out.println("RESULT ::" + result);
+    		}
+        }
+    
+		return result;
     }
     /**
      * Tejas Saoji.
@@ -276,7 +330,7 @@ public class Global extends ImporterTopLevel
 
     private static Object doPrint(Object[] args, Function funObj, boolean newline)
     {	
-    	System.out.println("in doPrint in Global.java");
+    	//System.out.println("in doPrint in Global.java");
         PrintStream out = getInstance(funObj).getOut();
         for (int i=0; i < args.length; i++) {
             if (i > 0)

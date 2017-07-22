@@ -543,7 +543,7 @@ public class Parser
 
     private AstRoot parse() throws IOException
     {
-        System.err.println("In parse() function in PARSER.java!!!!! ");
+        //System.err.println("In parse() function in PARSER.java!!!!! ");
         int pos = 0;
         AstRoot root = new AstRoot(pos);
         currentScope = currentScriptOrFn = root;
