@@ -510,8 +510,9 @@ public abstract class ScriptableObject implements Scriptable, Serializable,
         }
 
         else if(name.contains("_taint")){
-            String[] arr = name.split("_");
-            Slot slot = getSlot(arr[0], 0, SLOT_QUERY);
+            int idx = name.lastIndexOf("_");
+    		String str = name.substring(0,idx);
+            Slot slot = getSlot(str, 0, SLOT_QUERY);
             if (slot == null) {
                 return Scriptable.NOT_FOUND;
             }

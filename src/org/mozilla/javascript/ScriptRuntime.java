@@ -1987,7 +1987,7 @@ public class ScriptRuntime {
                 if (withObj instanceof XMLObject) {
                     XMLObject xmlObject = (XMLObject)withObj;
                     if (xmlObject.has(cx, id)) {
-                    	System.err.println("In bind() in ScriptRunTime.java.. 1..");
+                    	//System.err.println("In bind() in ScriptRunTime.java.. 1..");
                         return xmlObject;
                     }
                     if (firstXMLObject == null) {
@@ -1995,7 +1995,7 @@ public class ScriptRuntime {
                     }
                 } else {
                     if (ScriptableObject.hasProperty(withObj, id)) {
-                    	System.err.println("In bind() in ScriptRunTime.java.. 2..");
+                    	//System.err.println("In bind() in ScriptRunTime.java.. 2..");
                         return withObj;
                     }
                 }
@@ -2007,7 +2007,7 @@ public class ScriptRuntime {
             }
             for (;;) {
                 if (ScriptableObject.hasProperty(scope, id)) {
-                	System.err.println("In bind() in ScriptRunTime.java.. 3..");
+                	//System.err.println("In bind() in ScriptRunTime.java.. 3..");
                     return scope;
                 }
                 scope = parent;
@@ -2022,12 +2022,12 @@ public class ScriptRuntime {
             scope = checkDynamicScope(cx.topCallScope, scope);
         }
         if (ScriptableObject.hasProperty(scope, id)) {
-        	System.err.println("In bind() in ScriptRunTime.java.. 4..");
+        	//System.err.println("In bind() in ScriptRunTime.java.. 4..");
             return scope;
         }
         // Nothing was found, but since XML objects always bind
         // return one if found
-        System.err.println("In bind() in ScriptRunTime.java.. 5..");
+        //System.err.println("In bind() in ScriptRunTime.java.. 5..");
         return firstXMLObject;
     }
 
@@ -2716,6 +2716,15 @@ public class ScriptRuntime {
         if (args.length < 1)
             return Undefined.instance;
         Object x = args[0];
+        
+        if(x instanceof String || x instanceof NativeString || x instanceof ConsString){
+    		String argStr = x.toString();
+        	if(argStr.contains("_")){
+        		argStr = argStr.split("_")[0];
+        	}
+        	x = argStr;
+        }
+        
         if (!(x instanceof CharSequence)) {
             if (cx.hasFeature(Context.FEATURE_STRICT_MODE) ||
                 cx.hasFeature(Context.FEATURE_STRICT_EVAL))
