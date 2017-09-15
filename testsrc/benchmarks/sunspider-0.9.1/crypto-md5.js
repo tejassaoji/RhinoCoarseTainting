@@ -416,3 +416,25 @@ var md5Output = hex_md5(taint(plainText));
 var md5Output = hex_md5(taint(plainText));
 var md5Output = hex_md5(taint(plainText));
 var md5Output = hex_md5(taint(plainText));
+
+// // Test 10
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))
+// var md5Output = hex_md5(taint(plainText));
+// print(isTainted(md5Output))

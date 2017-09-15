@@ -4,12 +4,12 @@ var tests = [
     // "bitops-3bit-bits-in-byte", "bitops-bits-in-byte", "bitops-bitwise-and", "bitops-nsieve-bits",
     // "controlflow-recursive",
     //--"crypto-aes",
-    "crypto-md5"
+    //"crypto-md5"
     // , "crypto-sha1",
     // "date-format-tofte",
     //--"date-format-xparb",
     // "math-cordic", "math-partial-sums", "math-spectral-norm",
-    // "string-fasta",
+    "string-fasta"
     //--"string-tagcloud", //--"string-base64",
     //"string-unpack-code"
     //--, "string-validate-input"

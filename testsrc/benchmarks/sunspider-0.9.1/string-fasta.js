@@ -78,8 +78,136 @@ function fastaRandom(n, table) {
 
 var ret;
 
-var count = 7;
-ret = fastaRepeat(2*count*100000, ALU);
-ret = fastaRandom(3*count*1000, IUB);
-ret = fastaRandom(5*count*1000, HomoSap);
+// var count = 7;
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRandom(3*count*1000, IUB);
+// ret = fastaRandom(5*count*1000, HomoSap);
 
+var count = 7;
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+//
+//
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+//
+//
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+//
+//
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+//
+//
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+//
+//
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+//
+//
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+//
+//
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, ALU);
+// ret = fastaRepeat(2*count*100000, ALU);
+//
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, taint(ALU));
+// ret = fastaRepeat(2*count*100000, ALU);
+//
+ret = fastaRepeat(2*count*100000, taint(ALU));
+ret = fastaRepeat(2*count*100000, taint(ALU));
+ret = fastaRepeat(2*count*100000, taint(ALU));
+ret = fastaRepeat(2*count*100000, taint(ALU));
+ret = fastaRepeat(2*count*100000, taint(ALU));
+ret = fastaRepeat(2*count*100000, taint(ALU));
+ret = fastaRepeat(2*count*100000, taint(ALU));
+ret = fastaRepeat(2*count*100000, taint(ALU));
+ret = fastaRepeat(2*count*100000, taint(ALU));
+ret = fastaRepeat(2*count*100000, taint(ALU));
